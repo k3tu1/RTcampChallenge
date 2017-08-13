@@ -469,9 +469,9 @@ foreach ($user_albums as $album) {
                     <h4 class="modal-title">Social Links</h4>
                 </div>
                 <div class="modal-body">
-                    <p><a href="https://www.facebook.com/sourabhjagtap08" target="_blank"><img src="http://marketingland.com/wp-content/ml-loads/2013/04/Facebook-Home-Logo-300x300.png" class="img-circle" style="height: 60px; width: 60px;"></a>
-                        <a href="https://in.linkedin.com/in/sourabh-jagtap-b4a394b3" target="_blank"><img src="https://cdn3.iconfinder.com/data/icons/free-social-icons/67/linkedin_circle_color-512.png" class="img-circle" style="height: 65px; width: 65px;"></a>
-                        <a href="https://github.com/sourabhjagtap95" target="_blank"><img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png" class="img-circle" style="height: 75px; width: 75px;"></a>
+                    <p><a href="https://www.facebook.com/ketdave" target="_blank"><img src="http://marketingland.com/wp-content/ml-loads/2013/04/Facebook-Home-Logo-300x300.png" class="img-circle" style="height: 60px; width: 60px;"></a>
+                        <a href="https://in.linkedin.com/in/#" target="_blank"><img src="https://cdn3.iconfinder.com/data/icons/free-social-icons/67/linkedin_circle_color-512.png" class="img-circle" style="height: 65px; width: 65px;"></a>
+                        <a href="https://github.com/ketul16" target="_blank"><img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png" class="img-circle" style="height: 75px; width: 75px;"></a>
                     </p>
                 </div>
                 <div class="modal-footer">
