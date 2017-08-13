@@ -42,10 +42,10 @@ if (isset($accessToken)) {
 		}
 	}
 	$_SESSION['facebook_access_token'] = (string) $accessToken;
-	header('Location: https://facebookgalleryapp.herokuapp.com/index.php');
+	header('Location: https://ketul.herokuapp.com/index.php');
 } else {
 	if ($helper->getError()) {
-		header('Location: https://facebookgalleryapp.herokuapp.com/index.php');
+		header('Location: https://ketul.herokuapp.com/index.php');
 	} else {
 		header('HTTP/1.0 400 Bad Request');
 //            echo 'Bad request';
@@ -54,6 +54,6 @@ if (isset($accessToken)) {
 }
 if (isset($_REQUEST['error'])) {
 	if (isset($_REQUEST['error_reason']) && $_REQUEST['error_reason'] == 'user_denied') {
-		header('Location: https://facebookgalleryapp.herokuapp.com/index.php');
+		header('Location: https://ketul.herokuapp.com/index.php');
 	}
 }
