@@ -108,7 +108,7 @@ require_once __DIR__ . '/vendor/autoload.php';
             top: 50%;
         }
         body{
-            background: url('https://themechangers.files.wordpress.com/2014/11/website-design-background1.png') no-repeat center center fixed;
+            background: url('facebook.png') no-repeat center center fixed;
             background-size: cover;
             background-repeat: no-repeat;
         }

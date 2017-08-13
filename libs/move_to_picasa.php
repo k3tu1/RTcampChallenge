@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Facebook Albums</title>
@@ -75,13 +75,13 @@
  * Date: 20/9/16
  * Time: 12:58 PM
  */
- // session_start();
+// session_start();
 require_once 'google-api/vendor/autoload.php';
 require_once 'Zend/Loader.php';
-require_once ('../fbconfig.php');
-require_once ('../vendor/autoload.php');
+require_once '../fbconfig.php';
+require_once '../vendor/autoload.php';
 
-\Facebook\FacebookSession::setDefaultApplication($app_id,$app_secret);
+\Facebook\FacebookSession::setDefaultApplication($app_id, $app_secret);
 
 Zend_Loader::loadClass('Zend_Gdata_Photos');
 Zend_Loader::loadClass('Zend_Gdata_ClientLogin');
@@ -91,9 +91,9 @@ $client1 = new Google_Client();
 $client1->setAuthConfigFile('user_credentials.json');
 $client1->setAccessType("offline");
 
-if(!isset($_SESSION['access_token'])){
-    // echo 'if';
-    ?>
+if (!isset($_SESSION['access_token'])) {
+	// echo 'if';
+	?>
     <div class="container">
         <div class="jumbotron">
             <div class="row text-center">
@@ -109,72 +109,69 @@ if(!isset($_SESSION['access_token'])){
         </div>
     </div>
     <?php
-}
-else{
-    // echo 'else';
-    $client1->setAccessToken($_SESSION['access_token']);
+} else {
+	// echo 'else';
+	$client1->setAccessToken($_SESSION['access_token']);
 
-    $client = Zend_Gdata_AuthSub::getHttpClient( $_SESSION['access_token'] );
-    $service = new Zend_Gdata_Photos($client);
-    $entry = new Zend_Gdata_Photos_AlbumEntry();
+	$client = Zend_Gdata_AuthSub::getHttpClient($_SESSION['access_token']);
+	$service = new Zend_Gdata_Photos($client);
+	$entry = new Zend_Gdata_Photos_AlbumEntry();
 
-    $new_album_name = str_replace( " ", "_", $_SESSION['album_name'] );
+	$new_album_name = str_replace(" ", "_", $_SESSION['album_name']);
 
-    $entry->setTitle($service->newTitle($new_album_name));
-    
-    $result = $service->insertAlbumEntry($entry);
-    $album_id = $result->getGphotoId();
+	$entry->setTitle($service->newTitle($new_album_name));
 
-    $fbApp = new \Facebook\FacebookApp($app_id,$app_secret);
-    $request_albums_photos = new \Facebook\FacebookRequest($fbApp, $_SESSION['facebook_access_token'], 'GET', '/' . $_SESSION['album_id'] . '/photos?fields=source');
-    try {
-        $response_albums_photos = $fb->getClient()->sendRequest($request_albums_photos);
-    } catch (\Facebook\Exceptions\FacebookResponseException $e) {
-        echo "Graph Returned error : " . $e->getMessage();
-    } catch (\Facebook\Exceptions\FacebookSDKException $e) {
-        // SDK Error
-        echo "Facebook SDK error : " . $e->getMessage();
-    }
+	$result = $service->insertAlbumEntry($entry);
+	$album_id = $result->getGphotoId();
 
-    $albums_photos = $response_albums_photos->getGraphEdge()->asArray();
+	$fbApp = new \Facebook\FacebookApp($app_id, $app_secret);
+	$request_albums_photos = new \Facebook\FacebookRequest($fbApp, $_SESSION['facebook_access_token'], 'GET', '/' . $_SESSION['album_id'] . '/photos?fields=source');
+	try {
+		$response_albums_photos = $fb->getClient()->sendRequest($request_albums_photos);
+	} catch (\Facebook\Exceptions\FacebookResponseException $e) {
+		echo "Graph Returned error : " . $e->getMessage();
+	} catch (\Facebook\Exceptions\FacebookSDKException $e) {
+		// SDK Error
+		echo "Facebook SDK error : " . $e->getMessage();
+	}
 
-    function add_new_photos($album_photo,$service,$album_id){
-        try {
-            $path = dirname(__FILE__) . '/resources/downloaded_photos/' . uniqid();
-            copy($album_photo, $path);
+	$albums_photos = $response_albums_photos->getGraphEdge()->asArray();
 
-            $fd = $service->newMediaFileSource($path);
-            $fd->setContentType('image/jpeg');
+	function add_new_photos($album_photo, $service, $album_id) {
+		try {
+			$path = dirname(__FILE__) . '/resources/downloaded_photos/' . uniqid();
+			copy($album_photo, $path);
 
-            $photo_entry = $service->newPhotoEntry();
-            $photo_entry->setMediaSource($fd);
-            $photo_entry->setTitle($service->newTitle('New Photo'));
+			$fd = $service->newMediaFileSource($path);
+			$fd->setContentType('image/jpeg');
 
-            $album_query = $service->newAlbumQuery();
-            $album_query->setUser('default');
-            $album_query->setAlbumId($album_id);
+			$photo_entry = $service->newPhotoEntry();
+			$photo_entry->setMediaSource($fd);
+			$photo_entry->setTitle($service->newTitle('New Photo'));
 
-            $service->insertPhotoEntry($photo_entry, $album_query->getQueryUrl());
+			$album_query = $service->newAlbumQuery();
+			$album_query->setUser('default');
+			$album_query->setAlbumId($album_id);
 
-            unlink($path);
-        } catch (Zend_Gdata_App_Exception $e) {
-            echo "Error: " . $e->getResponse();
-        }
+			$service->insertPhotoEntry($photo_entry, $album_query->getQueryUrl());
 
-        
+			unlink($path);
+		} catch (Zend_Gdata_App_Exception $e) {
+			echo "Error: " . $e->getResponse();
+		}
 
-    }
+	}
 
-    if (!empty($albums_photos)) {
-        $i=0;
-        foreach ($albums_photos as $album_photo) {
-            $album_photo = (array)$album_photo;
-            $i++;
-            add_new_photos($album_photo['source'],$service,$album_id);
-        }
-    }
+	if (!empty($albums_photos)) {
+		$i = 0;
+		foreach ($albums_photos as $album_photo) {
+			$album_photo = (array) $album_photo;
+			$i++;
+			add_new_photos($album_photo['source'], $service, $album_id);
+		}
+	}
 
-    ?>
+	?>
     <div class="container">
         <div class="jumbotron">
             <div class="row text-center">
