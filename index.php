@@ -453,6 +453,8 @@ foreach ($user_albums as $album) {
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#contact" role="button" data-toggle="modal">Contact Me</a>
                     </li>
+                    <li><a href="#about" role="button" data-toggle="modal">About</a>
+                    </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -461,7 +463,6 @@ foreach ($user_albums as $album) {
     <!-- Modal Contact-->
     <div class="modal fade" id="contact" role="dialog">
         <div class="modal-dialog">
-
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
@@ -478,13 +479,11 @@ foreach ($user_albums as $album) {
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
-
         </div>
     </div>
     <!-- Modal About-->
     <div class="modal fade" id="about" role="dialog">
         <div class="modal-dialog">
-
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
