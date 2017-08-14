@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: sourabh
- * Date: 28/8/16
- * Time: 9:39 PM
- */
+
 ob_start();
 require_once 'fbconfig.php';
 require_once __DIR__ . '/vendor/autoload.php';
