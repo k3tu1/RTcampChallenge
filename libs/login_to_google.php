@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: sourabh
- * Date: 30/8/16
- * Time: 12:26 AM
- */
+
 session_start();
 require_once 'google-api/vendor/autoload.php';
 
