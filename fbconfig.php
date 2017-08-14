@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: sourabh
- * Date: 29/8/16
- * Time: 10:26 PM
- */
 
 if (!session_id()) {
 	session_start();
