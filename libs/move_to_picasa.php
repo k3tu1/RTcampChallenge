@@ -69,12 +69,6 @@
     </div><!-- /.container-fluid -->
 </nav>
 <?php
-/**
- * Created by PhpStorm.
- * User: sourabh
- * Date: 20/9/16
- * Time: 12:58 PM
- */
 // session_start();
 require_once 'google-api/vendor/autoload.php';
 require_once 'Zend/Loader.php';
